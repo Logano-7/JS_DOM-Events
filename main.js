@@ -77,13 +77,13 @@ let list = [
 ];
 
 // TODO: Create an unordered list element
-var container = document.getElementById("container");
-var unorderedList = document.createElement("ul");
+let container = document.getElementById("container");
+let unorderedList = document.createElement("ul");
 
 // TODO: Iterate over the array values, and create a list item element for each
 
 list.forEach(function (item) {
-  var listItem = document.createElement("li");
+  let listItem = document.createElement("li");
   listItem.textContent = item;
 
   // TODO: Append the new list items to the unordered list element
