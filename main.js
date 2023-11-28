@@ -104,37 +104,29 @@ container.appendChild(unorderedList);
 
 function show() {
   const modal = document.createElement("div");
+  const modalCard = document.createElement("div");
+  const modalPara = document.createElement("p");
 
-  modal.innerHTML =
+  modal.id = "modal";
+  modalCard.classList.add("modal-card");
+  modalPara.textContent =
     "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
-
-  modal.style.position = "fixed";
-  modal.style.top = "0";
-  modal.style.left = "0";
-  modal.style.width = "100%";
-  modal.style.height = "100%";
-  modal.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-  modal.style.color = "white";
-  modal.style.padding = "20px";
-  modal.style.boxSizing = "border-box";
-  modal.style.zIndex = "9999";
-
+  // Close Button
   const closeButton = document.createElement("button");
-  closeButton.innerHTML = "Close";
-  closeButton.style.position = "absolute";
-  closeButton.style.top = "10px";
-  closeButton.style.right = "10px";
-  closeButton.style.padding = "5px 10px";
-  closeButton.style.backgroundColor = "white";
-  closeButton.style.color = "black";
-  closeButton.style.border = "none";
-  closeButton.style.cursor = "pointer";
-
-  closeButton.onclick = function () {
+  closeButton.textContent = "Close";
+  closeButton.classList.add("modalCloseBtn");
+  // Closing Modal
+  function closeModal() {
     document.body.removeChild(modal);
-  };
-
-  modal.appendChild(closeButton);
-
+  }
+  modal.addEventListener("click", closeModal);
+  modalCard.addEventListener("click", (event) => event.stopPropagation());
+  closeButton.addEventListener("click", closeModal);
+  //Appending Everything Created
   document.body.appendChild(modal);
+  modal.append(modalCard);
+  modalCard.append(closeButton, modalPara);
 }
+
+const modalButton = document.querySelector("#btn");
+modalButton.addEventListener("click", show);
